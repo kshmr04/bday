@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🎂 Happy Birthday PINKUuu 💖</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #4B0082;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 2px 2px #00000033;
+        }
+        .quote, .birthday-message {
+            font-size: 1.6em;
+            font-style: italic;
+            margin: 30px auto;
+            max-width: 800px;
+            min-height: 60px;
+        }
+        .birthday-message {
+            font-style: normal;
+            font-weight: bold;
+            font-size: 2em;
+            color: #ff0066;
+        }
+        img {
+            width: 400px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .extra2-image {
+            width: 500px;
+            height: 700px;
+            margin: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        audio {
+            display: none;
+        }
+        #play-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎉 Special Birthday Message 🎉</h1>
+
+    <!-- Main Image -->
+    <img src="/static/img/main_flower.jpg" alt="Main Flower Image">
+
+    <!-- First Typing Quote -->
+    <p class="quote" id="quote"></p>
+
+    <!-- Second Typing Message -->
+    <p class="birthday-message" id="birthday"></p>
+
+    <!-- Extra Images -->
+    <img src="/static/img/extra1.jpeg" alt="Extra Image 1">
+    <img src="/static/img/extra2.jpeg" alt="Extra Image 2" class="extra2-image">
+    <img src="/static/img/extra4.jpeg" alt="Extra Image 3">
+
+    <!-- Button to Play Music (Fallback) -->
+    <button id="play-btn" onclick="playMusic()">🎶 Play Birthday Song 🎶</button>
+
+    <!-- Background Music -->
+    <audio id="birthday-audio" loop>
+        <source src="/static/music/birthday_song.wav" type="audio/wav">
+    </audio>
+
+    <!-- Scripts -->
+    <script>
+        const quoteText = "Wishing you a day filled with laughter, success, and all the things that bring you joy. May this year be as amazing as your smile. Keep shining bright!";
+        const birthdayText = "HAPPY BIRTHDAY PINKUuu.";
+        const quoteElem = document.getElementById("quote");
+        const birthdayElem = document.getElementById("birthday");
+
+        let i = 0;
+        function typeQuote() {
+            if (i < quoteText.length) {
+                quoteElem.innerHTML += quoteText.charAt(i);
+                i++;
+                setTimeout(typeQuote, 50);
+            } else {
+                setTimeout(typeBirthday, 800);
+            }
+        }
+
+        let j = 0;
+        function typeBirthday() {
+            if (j < birthdayText.length) {
+                birthdayElem.innerHTML += birthdayText.charAt(j);
+                j++;
+                setTimeout(typeBirthday, 70);
+            }
+        }
+
+        typeQuote();
+
+        const audio = document.getElementById('birthday-audio');
+
+        document.body.addEventListener('click', function () {
+            audio.play().then(() => {
+                document.getElementById('play-btn').style.display = 'none';
+            }).catch((error) => {
+                console.log("Autoplay blocked, use button");
+            });
+        }, { once: true });
+
+        function playMusic() {
+            audio.play().then(() => {
+                document.getElementById('play-btn').style.display = 'none';
+            }).catch(error => {
+                alert("Please click anywhere on the page first to allow music!");
+            });
+        }
+    </script>
+</body>
+</html>
